@@ -33,12 +33,3 @@ RBZBoard单片机教程文档
    tools_support/tools_support
    api/api
    test/test
-
-   
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
