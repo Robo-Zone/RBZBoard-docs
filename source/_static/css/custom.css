@@ -1,0 +1,84 @@
+:root {
+    --code-background-color: #fff;
+    --code-border-color: #e1e4e5;
+    --code-literal-color: #d04c60;
+
+    --code-example-good-color: #3fb950;
+    --code-example-bad-color: #f85149;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --code-background-color: #434649;
+        --code-border-color: #505356;
+        --code-literal-color: #faa;
+
+        --code-example-good-color: #3fb950;
+        --code-example-bad-color: #f85149;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .wy-body-for-nav {
+        /* Center the page on wide displays for better readability */
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .wy-nav-side {
+        /* Required to center the page on wide displays */
+        left: inherit;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .rst-versions {
+        /* Required to center the page on wide displays */
+        left: inherit;
+    }
+}
+
+
+code,
+.rst-content tt,
+.rst-content code {
+    font-size: 14px;
+    background-color: var(--code-background-color);
+    border: 1px solid var(--code-border-color);
+}
+
+.rst-content tt.literal,
+.rst-content code.literal {
+    color: var(--code-literal-color);
+}
+
+.rst-content div[class^="highlight"] {
+    border-color: var(--code-border-color);
+}
+
+.rst-content pre.literal-block,
+.rst-content div[class^="highlight"] pre,
+.rst-content .linenodiv pre {
+    /* Increase the font size and line height in code blocks */
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Code tab display tweaks */
+
+.ui.tabular.menu .active.item,
+.ui.segment {
+    background-color: var(--code-background-color);
+}
+
+/* Allows to add a green or red bar to code blocks for "good"/"bad" code examples. */
+.code-example-good div.highlight {
+    border-left-color: var(--code-example-good-color);
+    border-left-width: 8px;
+}
+.code-example-bad div.highlight {
+    border-left-color: var(--code-example-bad-color);
+    border-left-width: 8px;
+}

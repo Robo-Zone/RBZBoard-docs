@@ -17,7 +17,7 @@ RBZBoard单片机教程文档
    summary/about/about
    summary/hardware/hardware
    summary/software/software
-   summary/setup/setup
+   summary/environment/environment
 
 .. toctree::
    :maxdepth: 2
@@ -26,11 +26,10 @@ RBZBoard单片机教程文档
    tutorials/introduction/introduction
    tutorials/tutorial_basic/tutorial_basic
    tutorials/tutorial_advance/tutorial_advance
-
+   
 .. toctree::
    :maxdepth: 2
    :caption: 其它:
 
    tools_support/tools_support
    api/api
-   test/test

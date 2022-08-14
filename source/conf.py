@@ -37,3 +37,7 @@ html_theme_options = {
     # Collapse navigation (False makes it tree-like)
     "collapse_navigation": False,
 }
+
+html_css_files = [
+    "css/custom.css",
+]
