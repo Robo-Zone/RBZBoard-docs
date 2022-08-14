@@ -17,6 +17,7 @@ RBZBoard单片机教程文档
    summary/about/about
    summary/hardware/hardware
    summary/software/software
+   summary/setup/setup
 
 .. toctree::
    :maxdepth: 2
