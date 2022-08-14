@@ -84,7 +84,7 @@ Arduino是另一种单片机，
 来兼容我们的单片机。
 
 之所以称其为“开发环境”，
-正式因为它提供了多个环节的功能，
+正是因为它提供了多个环节的功能，
 配合起来完成了整个单片机的开发。
 
 - 编辑——提供文件管理、代码编辑功能。
@@ -169,7 +169,7 @@ Arduino IDE的安装、界面介绍可以参考 @Todo。
 
    digitalWrite(IO_LED_PIN, HIGH); // 点亮IO LED，HIGH表示高电平
 
-光是点亮只会让IO LED保持常量，
+光是点亮只会让IO LED保持常亮，
 这还不够，
 我们希望IO LED在半秒后灭掉。
 
@@ -177,7 +177,7 @@ Arduino IDE的安装、界面介绍可以参考 @Todo。
 
    delay(500); // 等待（延迟）500ms（即0.5s）
    digitalWrite(IO_LED_PIN, LOW); // 关闭IO LED，LOW表示低电平
-   delay(500); // 再等半秒，才进入下一次loop()函数的循环点亮IO LED
+   delay(500);                    // 再等半秒，才进入下一次loop()函数的循环点亮IO LED
 
 整个程序最后便是：
 
@@ -195,15 +195,15 @@ Arduino IDE的安装、界面介绍可以参考 @Todo。
       // 主循环函数
       // 这里的代码将在setup()后被一直循环调用
       digitalWrite(IO_LED_PIN, HIGH); // 点亮IO LED，HIGH表示高电平
-      delay(500); // 等待（延迟）500ms（即0.5s）
-      digitalWrite(IO_LED_PIN, LOW); // 关闭IO LED，LOW表示低电平
-      delay(500); // 再等半秒，才进入下一次loop()函数的循环点亮IO LED
+      delay(500);                     // 等待（延迟）500ms（即0.5s）
+      digitalWrite(IO_LED_PIN, LOW);  // 关闭IO LED，LOW表示低电平
+      delay(500);                     // 再等半秒，才进入下一次loop()函数的循环点亮IO LED
    }
 
 上传单片机
 ~~~~~~~~~~~~~~~~~~~~~
 
-我们使用type-c **数据线**（不能使用充电线）连接电脑。
+我们使用type-c的 **数据线**（不能使用充电线）连接电脑。
 
 然后确认：
 
@@ -212,7 +212,7 @@ Arduino IDE的安装、界面介绍可以参考 @Todo。
 
 .. note::
    如果遇到问题，
-   可以查看 @Todo 章节来学习如何配合环境并上传程序。
+   可以查看 @Todo 章节来学习如何配置环境并上传程序。
 
 点击上传按钮，
 等待上传完毕，
