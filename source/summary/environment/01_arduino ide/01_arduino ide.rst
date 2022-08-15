@@ -48,12 +48,10 @@ Windows电脑用户
 
 安装ESP32开发包
 ------------------------
-因为Arduino IDE默认是给Arduino开发板用的编译器，默认只有Arduino开发板的相关开发资源。 **如果要想在在Arduino IDE中使用ESP32，需要额外安装ESP32的开发包。** 安装方式有两种，一种是在线安装，一种是使用离线包安装。
+因为Arduino IDE默认是给Arduino开发板用的编译器，默认只有Arduino开发板的相关开发资源。 **如果要想在在Arduino IDE中使用ESP32，需要额外安装ESP32的开发包。** 
 
 
-在线安装
-^^^^^^^^^^^^^^^^^^^^^
-在线方式需要连网络下载ESP32开发板的安装包，对网络环境要求较高， **但因为经常因网络原因安装失败，可以看下文的离线安装步骤。**
+**在安装过程中需要连网络** 用来下载ESP32开发板的安装包。
 
 在Arduino IDE软件中下载并安装ESP32开发包，首先是找到菜单里的： **文件->首选项** （或者使用快捷键 Ctrl+逗号）
 
@@ -62,6 +60,10 @@ Windows电脑用户
 在 **附加开发板管理器网址** 中填入以下url：https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
 
 .. image:: assets/Arduinoideesp32-2.png
+
+.. note::
+ 如果因为经常因网络原因安装失败，可以将上文的url改为：https://dl.espressif.com/dl/package_esp32_index.json
+
 
 然后打开： **工具->开发板->开发板管理器**，点击 **开发板管理器**
 
@@ -77,10 +79,33 @@ Windows电脑用户
 .. image:: assets/Arduinoideesp32-5.png
 
 
-
-离线安装
-^^^^^^^^^^^^^^^^^^^^^
-
-
 简单测试程序
 ------------------------
+编译下载一个简单的串口和电灯程序，测试一下 **RBZ v1.0** 的基本功能。
+
+.. code-block:: arduino
+   :linenos:
+   
+    #define IO_LED_PIN 2 // 定义IO LED的GPIO编号
+
+    void setup() {
+        // 初始化函数
+        // 这里的代码将在一开始被执行一次
+        pinMode(IO_LED_PIN, OUTPUT); // 设置引脚模式
+        Serial.begin(9600);//串口初始化，速率设置为9600
+        Serial.println("RBZ v1.0 first test");//串口打印
+    }
+
+    void loop() {
+        // 主循环函数
+        // 这里的代码将在setup()后被一直循环调用
+        digitalWrite(IO_LED_PIN, HIGH); // 点亮IO LED，HIGH表示高电平
+        Serial.println("RBZ v1.0：LED ON");//串口打印
+        delay(500);                     // 等待（延迟）500ms（即0.5s）
+        digitalWrite(IO_LED_PIN, LOW);  // 关闭IO LED，LOW表示低电平
+        Serial.println("RBZ v1.0：LED OFF");//串口打印
+        delay(500);                     // 再等半秒，才进入下一次loop()函数的循环点亮IO LED
+    }
+
+.. note::
+    **未完待续**
