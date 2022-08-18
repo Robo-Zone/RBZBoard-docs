@@ -14,4 +14,4 @@
    :maxdepth: 2
    :caption: 目录:
 
-   01_arduino ide/01_arduino ide
+   01_arduino_ide/01_arduino_ide
