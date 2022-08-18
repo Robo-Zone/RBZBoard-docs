@@ -1,4 +1,4 @@
-.. _doc_summary_environment_01_arduino ide:
+.. _doc_summary_environment_01_arduino_ide:
 
 
 环境搭建——安装Arduino IDE
