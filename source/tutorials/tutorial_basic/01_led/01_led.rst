@@ -181,7 +181,8 @@ Arduino IDE的安装、界面介绍可以参考 @Todo。
 
 整个程序最后便是：
 
-::
+.. code-block:: arduino
+   :linenos:
 
    const int IO_LED_PIN = 2; // 定义IO LED的GPIO编号
 
