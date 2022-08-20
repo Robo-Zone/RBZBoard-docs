@@ -9,3 +9,10 @@
 - 优先arduino ide
 - vscode
 - 图形化
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 目录:
+
+   01_arduino_ide/01_arduino_ide
+   02_arduino_vscode/02_arduino_vscode
