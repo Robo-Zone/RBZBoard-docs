@@ -28,7 +28,7 @@ Windows电脑用户
 ------------------------
 登录Arduino `官网 <https://www.arduino.cc/en/software>`_ （https://www.arduino.cc/en/software）下载最新版本的Arduino IDE。
 
-点击 **DOWNLOAD OPRTIONS** 下电脑对应的版本 **（Windows 7以上建议选择红框的选项）**。
+点击 **DOWNLOAD OPTIONS** 下电脑对应的版本 **（Windows 7以上建议选择红框的选项）**。
 
 .. image:: assets/Arduinodownload.png
 
@@ -181,6 +181,11 @@ Arduino编写程序对于初学者来说是非常容易的，它的基础框架�
 
 MAC电脑用户
 ~~~~~~~~~~~~~~~~~~~~~~~~
+安装Arduino IDE
+------------------------
+登录Arduino `官网 <https://www.arduino.cc/en/software>`_ （https://www.arduino.cc/en/software）下载最新版本的Arduino IDE。
+
+点击 **DOWNLOAD OPTIONS** 下电脑对应的版本 ** (Mac OS X10.10 以上建议选择红框中的选项) **。
 
 .. note::
     **未完待续**
