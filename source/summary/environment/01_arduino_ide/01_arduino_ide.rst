@@ -185,7 +185,7 @@ MAC电脑用户
 ------------------------
 登录Arduino `官网 <https://www.arduino.cc/en/software>`_ （https://www.arduino.cc/en/software）下载最新版本的Arduino IDE。
 
-点击 **DOWNLOAD OPTIONS** 下电脑对应的版本 ** (Mac OS X10.10 以上建议选择红框中的选项) **。
+点击 **DOWNLOAD OPTIONS** 下电脑对应的版本 **（Mac OS X10.10 以上建议选择红框中的选项）**。
 
 .. note::
     **未完待续**
