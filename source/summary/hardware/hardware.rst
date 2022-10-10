@@ -18,3 +18,6 @@ RBZ V1.0采用**ESP32-WROOM-32E**作为MCU。该模组具备**WI-FI、蓝牙通�
 - 板载PCB天线
 - 8MB SPI flash
 - 工作电压/供电电压: 3.0~3.6 V 
+
+..image:: assets/MCU ESP32.jpg
+
