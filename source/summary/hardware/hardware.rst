@@ -57,6 +57,12 @@ USB
 RBZ V1.0采用TYPE-C-2.0-16PIN--SMT-3作为USB连接器。
 .. image:: assets/AUTO PROGRAM.jpg
 
+
+
+
+
+
+
 LED
 ---------------
 
