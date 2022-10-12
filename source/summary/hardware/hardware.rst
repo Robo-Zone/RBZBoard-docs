@@ -8,7 +8,7 @@
 - 硬件的全部资料
 
 MCU
----------------
+-------------------
 RBZ V1.0采用**ESP32-WROOM-32E**作为MCU。该模组具备**WI-FI、蓝牙通信功能**，内置ESP32-DOWN-V3芯片、ESP32-D0WDR2-V3芯片、Xtensa⑧双核32位LX6微处理器，支持高达240 MHz的时钟频率，拥有448KB ROM、520KB SRAM、16 KB RTC SRAM，采用PCB板载天线，配置了4MB SPI flash。
 
 - WI-FI支持A-MPDU和A-MSDU聚合、支持0.4 μS保护间隔，工作信道中心频率范围: 2412 ~ 2484 MHz
@@ -22,17 +22,17 @@ RBZ V1.0采用**ESP32-WROOM-32E**作为MCU。该模组具备**WI-FI、蓝牙通�
 .. image:: assets/MCU ESP32.jpg
 
 HUB
----------------
+------------------
 HUB为多端口转发器，支持I2C、I2S通讯协议。
 .. image:: assets/HUB.jpg
 
 POWER
----------------
+------------------
 RBZ V1.0采用AMS1117-3.3作为降压稳压模块给芯片供电。AMS1117是一个正向低压降稳压器，在1A电流下压降为1.2V，即：将5V供电电压稳定在3.3V。
 .. image:: assets/POWER.jpg
 
 USB TO UART
----------------
+------------------
 RBZ V1.0采用CH340C转接芯片实现USB转串口。在串口方式下，CH340 提供常用的 MODEM 联络信号，用于为计算机扩展异步串口，或者将普通的
 串口设备直接升级到USB总线。
 - 全速USB设备接口，兼容USB V2.0。
@@ -44,33 +44,27 @@ RBZ V1.0采用CH340C转接芯片实现USB转串口。在串口方式下，CH340 
 .. image:: assets/USB TO UART.jpg
     
 POWER LED
----------------
+------------------
 POWER LED为上电指示灯。当单片机上电时，LED灯亮。
 .. image:: assets/POWER LED.jpg
 
 AUTO PROGRAM
----------------
+------------------
 .. image:: assets/AUTO PROGRAM.jpg
 
 USB
----------------
+------------------
 RBZ V1.0采用TYPE-C-2.0-16PIN--SMT-3作为USB连接器。
 .. image:: assets/AUTO PROGRAM.jpg
 
-
-
-
-
-
-
 LED
----------------
+------------------
 
 POWER
----------------
+------------------
 
 KEY
----------------
+------------------
 
 IO
 ---------------
