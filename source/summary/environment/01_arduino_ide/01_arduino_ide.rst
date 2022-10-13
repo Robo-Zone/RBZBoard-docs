@@ -46,6 +46,16 @@ Windows电脑用户
 
 .. image:: assets/Arduinoide.png
 
+将Arduino IDE设置为 **中文**。
+
+首先是找到菜单里的： **File->Preferences** （或者使用快捷键 Ctrl+逗号）。
+
+.. image:: assets/ArduinoIDE_cn1.png
+
+将Language改成 **中文（简体）** 。
+
+.. image:: assets/ArduinoIDE_cn2.png
+
 安装ESP32开发包
 ------------------------
 因为Arduino IDE默认是给Arduino开发板用的编译器，默认只有Arduino开发板的相关开发资源。 **如果要想在在Arduino IDE中使用ESP32，需要额外安装ESP32的开发包。** 
@@ -65,7 +75,7 @@ Windows电脑用户
  如果因为经常因网络原因安装失败，可以将上文的url改为：https://dl.espressif.com/dl/package_esp32_index.json
 
 
-然后打开： **工具->开发板->开发板管理器**，点击 **开发板管理器**
+然后打开： **工具->开发板->开发板管理器**，点击 **开发板管理器**（或者使用快捷键 Ctrl+Shift+B）。
 
 .. image:: assets/Arduinoideesp32-3.png
 
