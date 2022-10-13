@@ -34,7 +34,7 @@ Windows电脑用户
 
 点击 **JUST DOWNLOAD** ，开始下载Arduino IDE安装包。
 
-.. image:: assets/Arduinodownload1.png
+.. image:: assets/Arduinodownload_1.png
 
 下载得到arduino-XX.XX.XX-windows.exe（XX.XX.XX为版本号，教程使用1.8.19版本）安装文件，常规点击“下一步”的安装方式安装即可（ **不需要更改任何设置** ）。
 
