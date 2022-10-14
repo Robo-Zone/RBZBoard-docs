@@ -10,4 +10,5 @@
 
    01_led/01_led
 
+   04_buzzer/04_buzzer
    05_key/05_key
