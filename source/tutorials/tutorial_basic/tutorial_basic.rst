@@ -9,6 +9,7 @@
    :caption: 目录:
 
    01_led/01_led
+   02_serial/02_serial
    03_marquee/03_marquee
    04_buzzer/04_buzzer
    05_key/05_key
