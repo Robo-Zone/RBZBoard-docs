@@ -12,6 +12,10 @@
 1. 管脚的初始化、模式设置、数字输入。
 2. pinMode()函数的使用。
 
+硬件连接
+~~~~~~~~~~~~~~~~~~~~~
+外接按键，如下图所示。
+.. image:: assets/KEY连接.png
 
 编写代码
 ~~~~~~~~~~~~~~~~~~~~
@@ -32,6 +36,7 @@
 来设置IO LED所属的2号GPIO引脚为 **输出模式**，按键KEY所接的5号GPIO引脚为 **输入模式**。
 
 ::
+
     pinMode(IO_LED_GPIO,OUTPUT); // 设置引脚模式
     pinMode(IO_KEY_PIN,Input); // 设置按键模式
 
@@ -42,6 +47,7 @@
 从而实现按下按键，IO LED灯灭，松开按键，IO LED灯亮。
 
 ::
+    
     IO_KEY_STATE = digitalRead(IO_KEY_PIN); // 读取IO KEY电平状态
     digitalWrite(IO_LED_PIN,IO_KEY_STATE); // 将IO KEY状态作为LED的输出
 

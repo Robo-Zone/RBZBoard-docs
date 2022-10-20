@@ -24,6 +24,7 @@ DAC输出——外接蜂鸣器演奏小星星
 直流电源输入经过振荡系统的放大取样电路在谐振装置作用下产生声音信号。
 无源蜂鸣器发生原理：方波信号输入谐振装置转换为声音信号输出。
 RBZBoard上没有蜂鸣器，需要外接，蜂鸣器引脚 **正极接pin4，负极接GND**。
+.. image:: assets/board_GND&PIN4.png
 
 
 tone()函数
@@ -47,6 +48,7 @@ tone()函数可以产生 **固定频率的PWM信号** 来驱动扬声器发声�
 我们需要定义不同音对应的频率，在最外层添加代码：
 
 ::
+
     // 定义不同音符对应频率
     #define NOTE_D0 -1
     #define NOTE_D1 294
@@ -58,13 +60,17 @@ tone()函数可以产生 **固定频率的PWM信号** 来驱动扬声器发声�
     #define NOTE_D7 556 
     
 我们需要定义曲子的节拍，在最外层添加代码：
+
 ::
+
     #define WHOLE 1 // 定义全音符
     #define HALF 0.5 //定义二分音符
     
 
 我们需要定义一个数组，表示整首曲子的音符部分：
+
 ::
+
     int tune[] =
     {
     NOTE_D1, NOTE_D0, NOTE_D1, NOTE_D0, NOTE_D5, NOTE_D0, NOTE_D5, NOTE_D0, NOTE_D6, NOTE_D0, NOTE_D6, NOTE_D0, NOTE_D5, NOTE_D0, // Twinkle, twinkle, little star
@@ -78,6 +84,7 @@ tone()函数可以产生 **固定频率的PWM信号** 来驱动扬声器发声�
 我们需要定义一个数组，表示整首曲子的节拍（音符持续时间）：
 
 ::
+
     loat duration[] =
     {
     0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5,
@@ -92,6 +99,7 @@ tone()函数可以产生 **固定频率的PWM信号** 来驱动扬声器发声�
 我们需要定义一个变量用来表示多少音符以及蜂鸣器所接引脚：
 
 ::
+
     int length; // 定义一个变量用来表示共有多少个音符
     int tonePin = 4; // 蜂鸣器接pin4
 
@@ -103,6 +111,7 @@ tone()函数可以产生 **固定频率的PWM信号** 来驱动扬声器发声�
 来查出数组里有多少个音符。
 
 ::
+
     pinMode(tonePin, OUTPUT); // 设置蜂鸣器的pin为输出模式
     length = sizeof(tune) / sizeof(tune[0]); // 查出数组里有多少个音符
 
@@ -111,6 +120,7 @@ tone()函数可以产生 **固定频率的PWM信号** 来驱动扬声器发声�
 添加代码来循环播放曲子。
 
 ::
+
     for (int x = 0; x < length; x++) // 循环音符的次数
     {
     tone(tonePin, tune[x]); // 依次播放tune数组元素（即每个音符）
@@ -121,6 +131,7 @@ tone()函数可以产生 **固定频率的PWM信号** 来驱动扬声器发声�
 
 
 整个程序最后便是：
+
 .. code-block:: arduino
     :linenos:
 
