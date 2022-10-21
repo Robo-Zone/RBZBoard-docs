@@ -196,6 +196,61 @@ MAC电脑用户
 登录Arduino `官网 <https://www.arduino.cc/en/software>`_ （https://www.arduino.cc/en/software）下载最新版本的Arduino IDE。
 
 点击 **DOWNLOAD OPTIONS** 下电脑对应的版本 **（Mac OS X10.10 以上建议选择红框中的选项）**。
+sss
+
+.. image:: assets/arduinoidemac2.14.18.png
+
+点击 **JUST DOWNLOAD** ，开始下载Arduino IDE安装包。
+
+.. image:: assets/arduinoidemac2.22.32.png
+    
+下载得到arduino-ide_2.0.0_macOS_64bit.dmg，双击打开，按照正常的Mac应用程序安装方式将Arduino IDE拖拽至应用程序文件夹
+
+.. image:: assets/arduinoidemac2.32.31.png
+
+打开启动台或在访达中打开应用程序文件夹， **双击** Arduino IDE图标打开。
+
+.. image:: assets/arduinoidemac2.33.16.png
+
+出现如下图所示编写程序界面，则 **安装成功** 。
+
+.. image:: assets/arduinoidemac2.34.49.png
+    
+安装ESP32开发包
+------------------------
+
+因为Arduino IDE默认是给Arduino开发板用的编译器，默认只有Arduino开发板的相关开发资源。 **如果要想在在Arduino IDE中使用ESP32，需要额外安装ESP32的开发包。** 
+
+**在安装过程中需要连网络** 用来下载ESP32开发板的安装包。
+
+在Arduino IDE软件中下载并安装ESP32开发包，单击Mac菜单栏中Arduino IDE找到preferences或快捷键command+， 打开首选项
+
+.. image:: assets/arduinoidemac2.35.39.png
+
+将以下url输入其他开发版管理器地址 https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+
+.. image:: assets/arduinoidemac2.38.42.png
 
 .. note::
-    **未完待续**
+ 如果因为经常因网络原因安装失败，可以将上文的url改为：https://dl.espressif.com/dl/package_esp32_index.json
+
+
+打开： **工具->开发板->开发板管理器**，点击 **开发板管理器**
+
+.. image:: assets/arduinoidemac2.40.36.png
+
+**输入esp32，查看搜索结果，点击安装。**
+
+.. image:: assets/arduinoidemac2.41.48.png
+
+安装完成， **重启Arduino IDE。**
+打开 **工具->开发板**，列表里显示有ESP32 Arduino，则安装成功。并选择开发板为 **ESP32 Dev Module**。
+
+.. image:: assets/arduinoidemac2.44.10.png
+
+.. note::
+ 测试程序部分与Windows几乎相同，请参考前文Windows部分，但要注意Mac系统信息的打开方式。
+
+.. image:: assets/arduinoidemac2.56.45.png
+.. image:: assets/arduinoidemac2.57.09.png
+.. image:: assets/arduinoidemac2.58.03.png
