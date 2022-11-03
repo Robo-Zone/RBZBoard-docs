@@ -14,3 +14,4 @@
    04_buzzer/04_buzzer
    05_key/05_key
    08_sensor/08_sensor
+   09_buzzer/09_buzzer
