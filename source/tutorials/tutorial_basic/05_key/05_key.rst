@@ -72,23 +72,23 @@ RBZBoard外接按键，
 .. code-block:: arduino
     :linenos:
 
-    const int IO_LED_PIN = 2; // 定义IO LED的GPIO编号
-    const int IO_KEY_PIN = 5; // 定义IO KEY的GPIO编号
-    int IO_KEY_STATE; // 定义IO KEY的状态常量
+        const int IO_LED_PIN = 2; // 定义IO LED的GPIO编号
+        const int IO_KEY_PIN = 5; // 定义IO KEY的GPIO编号
+        int IO_KEY_STATE; // 定义IO KEY的状态常量
 
-    void setup() {
-      // 初始化函数
-      // 这里的代码将在一开始被执行一次
-      pinMode(IO_LED_PIN,OUTPUT); // 设置引脚模式
-      pinMode(IO_KEY_PIN,INPUT); // 设置按键模式
-   }
+        void setup() {
+        // 初始化函数
+        // 这里的代码将在一开始被执行一次
+        pinMode(IO_LED_PIN,OUTPUT); // 设置引脚模式
+        pinMode(IO_KEY_PIN,INPUT); // 设置按键模式
+        }
 
-   void loop() {
-      // 主循环函数
-      // 这里的代码将在setup()后被一直循环调用
-      IO_KEY_STATE = digitalRead(IO_KEY_PIN); // 读取IO KEY电平状态
-      digitalWrite(IO_LED_PIN,IO_KEY_STATE); // 将IO KEY状态作为LED的输出
-   }
+        void loop() {
+            // 主循环函数
+            // 这里的代码将在setup()后被一直循环调用
+            IO_KEY_STATE = digitalRead(IO_KEY_PIN); // 读取IO KEY电平状态
+            digitalWrite(IO_LED_PIN,IO_KEY_STATE); // 将IO KEY状态作为LED的输出
+        }
 
 
 
