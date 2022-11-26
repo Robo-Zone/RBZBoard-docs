@@ -13,5 +13,6 @@
    03_marquee/03_marquee
    04_buzzer/04_buzzer
    05_key/05_key
+   07_servo/07_servo
    08_sensor/08_sensor
    09_buzzer/09_buzzer
