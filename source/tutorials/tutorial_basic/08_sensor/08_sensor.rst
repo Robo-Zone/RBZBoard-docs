@@ -131,7 +131,7 @@ GND接GND，**
 
 整个程序最后便是：
 
-.. code_block:: arduino
+.. code-block:: arduino
     :linenos:
 
     #include "DHTesp.h" // 引入头文件
