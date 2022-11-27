@@ -9,8 +9,9 @@
 
 这一小节将系统性地介绍：
 
-1. 输入采样。
-2. 
+1. DHT22温度传感器的使用。
+2. 外部库的安装。
+3. 使用DHT22进行输入采样。
 
 前言
 ~~~~~~~~~~~~~~~~
@@ -42,6 +43,7 @@ GND接GND，**
 
 .. image:: assets/board_sensor_connect.png
 
+
 安装库
 ------------
 要读取DHT传感器，
@@ -53,6 +55,7 @@ GND接GND，**
 1. 打开Arduino IDE,
 转到 “草图” >“ 包含库” >“ 管理库”。
 图书馆管理器应打开。
+
 2. 在“搜索”框中搜索“ DHT ”，
 然后从Adafruit安装DHT库。
 
@@ -65,6 +68,8 @@ GND接GND，**
 .. image:: assets/install_Adafruit_sensor.jpg
 
 4. 安装库后，重新启动Arduino IDE。
+
+
 
 编写代码
 ~~~~~~~~~
@@ -83,11 +88,13 @@ GND接GND，**
 所以我们在最外层（setup和loop函数以外）添加代码：
 
 ::
+
     const int DHT_PIN = 15; // 定义PIN15接收来自DHT22 DATA的数据
 
 定义一个DHT传感器。
 
 :: 
+
     DHTesp dhtSensor; // 定义一个DHT传感器
 
 接着，
@@ -96,8 +103,10 @@ GND接GND，**
 将DHT22与GPIO的PIN15关联。
 
 ::
+
     void setup(){
         Serial.begin(115200); // 设置串口速率
+
         dhtSensor.setup(DHT_PIN, DHTesp::DHT22); // 关联引脚
     }
 
@@ -107,11 +116,16 @@ GND接GND，**
 通过串口显示温度、湿度信息。
 
 ::
+
     void loop(){
         TempAndHumidity  data = dhtSensor.getTempAndHumidity(); // 接收来自传感器的温湿度数据，存入data变量
+
         Serial.println("Temp: " + String(data.temperature, 2) + "°C"); // 通过串口显示变量的温度信息
+        
         Serial.println("Humidity: " + String(data.humidity, 1) + "%"); // 显示湿度信息
+
         Serial.println("---"); // 定义分隔符
+
         delay(1000); // 延时1000ms
     }
 
@@ -128,14 +142,19 @@ GND接GND，**
 
     void setup() {
         Serial.begin(115200); // 设置串口速率
+
         dhtSensor.setup(DHT_PIN, DHTesp::DHT22); // 关联引脚
     }
 
     void loop() {
         TempAndHumidity  data = dhtSensor.getTempAndHumidity(); // 接收来自传感器的温湿度数据，存入data变量
+
          Serial.println("Temp: " + String(data.temperature, 2) + "°C"); // 通过串口显示变量的温度信息
+
         Serial.println("Humidity: " + String(data.humidity, 1) + "%"); // 显示湿度信息
+
         Serial.println("---"); // 定义分隔符
+
          delay(1000); // 延时1000ms
     }
 
