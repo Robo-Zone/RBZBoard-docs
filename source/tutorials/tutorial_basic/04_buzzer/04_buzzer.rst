@@ -1,5 +1,7 @@
 .. _doc_tutorial_basic_04_buzzer:
 
+.. highlight:: arduino
+
 DAC输出——外接蜂鸣器演奏小星星
 ============================
 

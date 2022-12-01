@@ -1,5 +1,7 @@
 .. _doc_tutorial_basic_03_marquee:
 
+.. highlight:: arduino
+
 逻辑控制——跑马灯
 ==================================================
 

@@ -1,5 +1,7 @@
 .. _doc_tutorial_basic_08_senseor:
 
+.. highlight:: arduino
+
 输入采样——DHT22温湿度传感器的使用
 ==============
 

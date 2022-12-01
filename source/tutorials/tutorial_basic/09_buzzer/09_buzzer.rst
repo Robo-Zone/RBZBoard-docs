@@ -1,5 +1,7 @@
 .. _doc_tutorial_basic_09_buzzer:
 
+.. highlight:: arduino
+
 DAC转换——蜂鸣器响度控制
 ==================================================
 

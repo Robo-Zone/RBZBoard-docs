@@ -1,5 +1,7 @@
 .. _doc_tutorial_basic_05_key:
 
+.. highlight:: arduino
+
 数字输入——按键控制板载LED的亮灭
 ========================================
 
