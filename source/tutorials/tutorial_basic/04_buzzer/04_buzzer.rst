@@ -1,219 +1,122 @@
-.. _doc_tutorial_basic_04_buzzer:
+.. _doc_tutorial_basic_05_buzzer_tone:
 
 .. highlight:: arduino
 
-DAC输出——外接蜂鸣器演奏小星星
-============================
+DAC输出——蜂鸣器响度控制
+==================================================
 
 我们将会编写程序，
-通过外接蜂鸣器，
-演奏小星星。
+控制蜂鸣器响度逐渐变大再变小，
+交替循环。
 
 这一小节将系统性地介绍：
 
-1. DAC输出。
-2. tone()函数的使用。
+1. DAC的概念（数模转换器）
+2. 蜂鸣器响度控制的实现方式——PWM。
+3. ledcWrite（）函数的使用。
 
 前言
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
 
-蜂鸣器
-------------------
+BUZZER
+----------------
 
-蜂鸣器种类繁多，
-主要分为有源蜂鸣器和无源蜂鸣器。
-蜂鸣器有正、负极性之分，
-采用直流电压供电，
-广泛用于打印机、报警器等电子设备中作为其发声元件。
-
-有源蜂鸣器发声原理：
-直流电源输入经过振荡系统的放大取样电路在谐振装置作用下产生声音信号。
-
-无源蜂鸣器发生原理：
-方波信号输入谐振装置转换为声音信号输出。
-RBZBoard上没有蜂鸣器，
-需要外接，
-蜂鸣器引脚 **正极接pin4，负极接GND**。
-
-.. image:: assets/board_GND_PIN4.png
+我们使用的是无源蜂鸣器。
+这里的“源”指的不是电源，而是有无震荡源。
+有源蜂鸣器内有震荡电路，因此输入直流信号即可驱动振膜震动发声。
+而无源蜂鸣器需要输入PWM信号，以驱动振膜。
+在RBZBoard上没有现成的蜂鸣器，因此需要外接，我们选择正极接入26端口。
 
 
-tone()函数
----------------------
+方波
+----------------
 
-tone()函数可以产生 **固定频率的PWM信号** 
-来驱动扬声器发声。 
-发声时间长度和声调都可以通过参数控制。
+方波是一种只有0（低电平）和1（高电平）的一种波。
+由于计算机电路内部也只有0和1两种状态。
+方波也是计算机中最为重要的波形之一。
 
-定义发声时间长度有两种方法:
-1. 通过tone()函数的参数来定义发声时长;
-2. 使用noTone()函数来停止发声。
-
-.. note::
-    如果在使用tone()函数时没有定义发声时间长度，
-    那么除非通过noTone()函数来停止声音，
-    否则Arduino将会一直通过tone()函数产生声音信号。
-
-    如果想要使用不同的引脚产生不同的声音音调，
-    每一次更换发声引脚以前都要使用noTone函数停止上一个引脚发声。
-
-
-编写代码
+DAC(模数转换)
 ~~~~~~~~~~~~~~~~~~~~~
 
-我们需要定义不同音对应的频率，
-在最外层添加代码：
+数模转换器指的是将数字量转变为模拟量的器件
+模拟量通常指的是连续信号，是一种在时间和幅度上都连续的一种信号。
+
+数字量是一种离散信号，通常是通过二进制进行表达。
+例如三位二进制数（011）可以转换为十进制数3。
+这也是DAC在计算机中实现的过程。
+
+
+
+PWM
+~~~~~~~~~~~~~~~~~~~~~
+
+PWM调制可以通过控制恒定频率的方波的占空比来实现功率变化。
+::
+
+   占空比：δ = t/T. //t为在一个周期内高电平的时长，T为周期
+   功率：P = U^2/R. //U为电压，R为电阻
+   设外围电路阻值不变，即P ∝ U^2. 
+   设Um为高电平电压，可得
+   P = (Um*δ)^2/R.
+
+由上式可知，占空比δ越大，输出功率也就越大。
+即可控制蜂鸣器的响度。
+
+
+
+ledcWrite（）函数的使用
+~~~~~~~~~~~~~~~~~~~~~
+
+首先ledcWrite（）函数的初始化。
 
 ::
 
-    // 定义不同音符对应频率
-    #define NOTE_D0 -1
-    #define NOTE_D1 294
-    #define NOTE_D2 330
-    #define NOTE_D3 350
-    #define NOTE_D4 393
-    #define NOTE_D5 441
-    #define NOTE_D6 495
-    #define NOTE_D7 556 
-    
-我们需要定义曲子的节拍，
-在最外层添加代码：
+   ledcSetup(channel,freq,resolution);   //设置通道，频率及分辨率
+
+共有16个通道（channel），为0-15。
+频率（freq）指的是PWM波的频率。
+分辨率取值为0-20，其模拟量范围为0-2^resolution-1。
+分辨率指的是将输出电压0-3.3V平均分为2^resolution份。
+
+之后是将通道与GPIO相连接
+::
+
+   ledcAttachPin(GPIO,channel);           //将通道0和gpio_pin连接起来
+
+最后通过ledcWrite（）函数即可控制输出的PWM占空比。
 
 ::
 
-    #define WHOLE 1 // 定义全音符
-    #define HALF 0.5 //定义二分音符
-    
+   ledcWrite(channel,i); //i为输出的模拟量，为十进制数。
 
-我们需要定义一个数组，
-表示整首曲子的音符部分：
-
-::
-
-    int tune[] =
-    {
-    NOTE_D1, NOTE_D0, NOTE_D1, NOTE_D0, NOTE_D5, NOTE_D0, NOTE_D5, NOTE_D0, NOTE_D6, NOTE_D0, NOTE_D6, NOTE_D0, NOTE_D5, NOTE_D0, // Twinkle, twinkle, little star
-    NOTE_D4, NOTE_D0, NOTE_D4, NOTE_D0, NOTE_D3, NOTE_D0, NOTE_D3, NOTE_D0, NOTE_D2, NOTE_D0, NOTE_D2, NOTE_D0, NOTE_D1, NOTE_D0, // How I wonder what you are!
-    NOTE_D5, NOTE_D0, NOTE_D5, NOTE_D0, NOTE_D4, NOTE_D0, NOTE_D4, NOTE_D0, NOTE_D3, NOTE_D0, NOTE_D3, NOTE_D0, NOTE_D2, NOTE_D0, // Up above the world so high,
-    NOTE_D5, NOTE_D0, NOTE_D5, NOTE_D0, NOTE_D4, NOTE_D0, NOTE_D4, NOTE_D0, NOTE_D3, NOTE_D0, NOTE_D3, NOTE_D0, NOTE_D2, NOTE_D0, // Like a diamond in the sky.
-    NOTE_D1, NOTE_D0, NOTE_D1, NOTE_D0, NOTE_D5, NOTE_D0, NOTE_D5, NOTE_D0, NOTE_D6, NOTE_D0, NOTE_D6, NOTE_D0, NOTE_D5, NOTE_D0, //Twinkle, twinkle, little star
-    NOTE_D4, NOTE_D0, NOTE_D4, NOTE_D0, NOTE_D3, NOTE_D0, NOTE_D3, NOTE_D0, NOTE_D2, NOTE_D0, NOTE_D2, NOTE_D0, NOTE_D1, NOTE_D0  //How I wonder what you are!
-    }
-
-我们需要定义一个数组，
-表示整首曲子的节拍（音符持续时间）：
-
-::
-
-    loat duration[] =
-    {
-    0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5,
-    0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5,
-    0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 
-    0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 
-    0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5,
-    0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5
-    }
-
-
-我们需要定义一个变量
-用来表示多少音符以及蜂鸣器所接引脚：
-
-::
-
-    int length; // 定义一个变量用来表示共有多少个音符
-    int tonePin = 4; // 蜂鸣器接pin4
-
-然后，
-我们在setup初始化函数中，
-调用pinMode()函数，
-来设置蜂鸣器所接4号GPIO引脚为 **输出模式**；
-调用sizeof()函数，
-来查出数组里有多少个音符。
-
-::
-
-    pinMode(tonePin, OUTPUT); // 设置蜂鸣器的pin为输出模式
-    length = sizeof(tune) / sizeof(tune[0]); // 查出数组里有多少个音符
-
-接着，
-我们在loop()函数中，
-添加代码来循环播放曲子。
-
-::
-
-    for (int x = 0; x < length; x++) // 循环音符的次数
-    {
-    tone(tonePin, tune[x]); // 依次播放tune数组元素（即每个音符）
-    delay(400 * duration[x]); // 每个音符持续的时间duration，400是调整时间的越大，曲子速度越慢，越小曲子速度越快
-    noTone(tonePin);// 停止当前音符，进入下一音符
-     }
-    delay(5000);// 等待5秒后，循环重新开始
-
-
+i的变化可以通过for循环来改变。
 整个程序最后便是：
 
 .. code-block:: arduino
-    :linenos:
+   :linenos:
 
-    // 定义不同音符对应频率
-    #define NOTE_D0 -1
-    #define NOTE_D1 294
-    #define NOTE_D2 330
-    #define NOTE_D3 350
-    #define NOTE_D4 393
-    #define NOTE_D5 441
-    #define NOTE_D6 495
-    #define NOTE_D7 556
- 
-    #define WHOLE 1 // 定义全音符
-    #define HALF 0.5 // 定义二分音符
+   int BUZZER = 26;
+   int freq = 2000;    //设置PWM波的频率
+   int channel = 0;    //设置通道,共16个通道，0~15
+   int resolution = 10; //分辨率，取值0~20 duty的最大值为 2^resolution-1
+   void setup() {
+      ledcSetup(channel,freq,resolution);   //设置通道0
+      ledcAttachPin(BUZZER,channel);           //将通道0和gpio_pin连接起来
+   }
 
-    // 整首曲子的音符部分
-    int tune[] =
-    {
-    NOTE_D1, NOTE_D0, NOTE_D1, NOTE_D0, NOTE_D5, NOTE_D0, NOTE_D5, NOTE_D0, NOTE_D6, NOTE_D0, NOTE_D6, NOTE_D0, NOTE_D5, NOTE_D0, // Twinkle, twinkle, little star
-    NOTE_D4, NOTE_D0, NOTE_D4, NOTE_D0, NOTE_D3, NOTE_D0, NOTE_D3, NOTE_D0, NOTE_D2, NOTE_D0, NOTE_D2, NOTE_D0, NOTE_D1, NOTE_D0, // How I wonder what you are!
-    NOTE_D5, NOTE_D0, NOTE_D5, NOTE_D0, NOTE_D4, NOTE_D0, NOTE_D4, NOTE_D0, NOTE_D3, NOTE_D0, NOTE_D3, NOTE_D0, NOTE_D2, NOTE_D0, // Up above the world so high,
-    NOTE_D5, NOTE_D0, NOTE_D5, NOTE_D0, NOTE_D4, NOTE_D0, NOTE_D4, NOTE_D0, NOTE_D3, NOTE_D0, NOTE_D3, NOTE_D0, NOTE_D2, NOTE_D0, // Like a diamond in the sky.
-    NOTE_D1, NOTE_D0, NOTE_D1, NOTE_D0, NOTE_D5, NOTE_D0, NOTE_D5, NOTE_D0, NOTE_D6, NOTE_D0, NOTE_D6, NOTE_D0, NOTE_D5, NOTE_D0, //Twinkle, twinkle, little star
-    NOTE_D4, NOTE_D0, NOTE_D4, NOTE_D0, NOTE_D3, NOTE_D0, NOTE_D3, NOTE_D0, NOTE_D2, NOTE_D0, NOTE_D2, NOTE_D0, NOTE_D1, NOTE_D0  //How I wonder what you are!
-    }
+   void loop() {
+      // led逐渐变暗
+      for (int  i = 0; i < 1023; i=i+5)
+      {
+         ledcWrite(channel,i);
+         delay(5);
+      }
+      // led逐渐变亮
+      for (int  i = 1023; i >= 0 ; i=i-5)
+      {
+         ledcWrite(channel,i);
+         delay(5);
+      }
+   }
 
-    // 整首曲子的节拍
-    loat duration[] =
-    {
-    0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5,
-    0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5,
-    0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 
-    0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 
-    0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5,
-    0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5
-    }
-
-    int length; // 定义一个变量用来表示共有多少个音符
-    int tonePin = 4; // 蜂鸣器接pin4
-
-    void setup()
-    {
-    pinMode(tonePin, OUTPUT); // 设置蜂鸣器的pin为输出模式
-    length = sizeof(tune) / sizeof(tune[0]); // 查出数组里有多少个音符
-    }
-
-    void loop()
-    {
-        for (int x = 0; x < length; x++) // 循环音符的次数
-        {
-        tone(tonePin, tune[x]); // 依次播放tune数组元素（即每个音符）
-        delay(400 * duration[x]); // 每个音符持续的时间duration，400是调整时间的越大，曲子速度越慢，越小曲子速度越快
-        noTone(tonePin);// 停止当前音符，进入下一音符
-        }
-    delay(5000);// 等待5秒后，循环重新开始
-    }
-
-
-
-上传单片机
-~~~~~~~~~~~~~~~~~~~~~
-
- 
+最后将程序上传至单片机即可运行。

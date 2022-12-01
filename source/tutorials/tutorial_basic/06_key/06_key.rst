@@ -1,4 +1,4 @@
-.. _doc_tutorial_basic_05_key:
+.. _doc_tutorial_basic_06_key:
 
 .. highlight:: arduino
 
