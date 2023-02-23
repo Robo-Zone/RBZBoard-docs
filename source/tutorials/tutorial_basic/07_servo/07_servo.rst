@@ -26,6 +26,7 @@
 棕色接GND；红色接Robozone Board的5v；桔色接GPIO13；
 
 .. image:: assets/servo_sg90.jpg
+.. image:: assets/servo_jx.png
 
 180度电机PWM控制的对应关系：
 

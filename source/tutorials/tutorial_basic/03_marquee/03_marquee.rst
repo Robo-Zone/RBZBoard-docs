@@ -49,13 +49,16 @@ for循环是一种循环语句，语法如下
 我们将实现4个LED的依次闪烁。
 首先声明LED的GPIO引脚和循环中计数器。
 
+
 ::
 
    const int LED_PINS[] = {26,25,33,32};//把4个LED的PIN接在26,25,33,32 GPIO引脚上
    int i,j=3;//j可以是除0外任意值
 
 
+.. image:: assets/marquee.png
 然后来设置LED所属的引脚为 **输出模式**。
+
 
 ::
 
